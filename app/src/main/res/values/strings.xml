@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ScoreHelper</string>
+    <string name="score_rule">评分细则</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="primary_text_color">#212121</color>
+    <color name="second_text_color">#757575</color>
+    <color name="appbackground">#f0f0f2</color>
+    <color name="float_bar">#00BCD4</color>
+    <color name="md_white">#ffffffff</color>
+    <color name="md_black">#ff000000</color>
+    <color name="primary_color">#03A9F4</color>
+    <!--hint颜色-->
+    <color name="editText_hint">#bfbfbf</color>
+    <color name="fuckcolor">#171412</color>
+</resources>
