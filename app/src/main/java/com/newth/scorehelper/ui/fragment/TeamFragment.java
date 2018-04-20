@@ -83,7 +83,7 @@ public class TeamFragment extends Fragment {
             textNoTeamInfo.setVisibility(View.GONE);
         }
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
-        TeamRecyclerAdapter adapter=new TeamRecyclerAdapter(mteam);
+        TeamRecyclerAdapter adapter=new TeamRecyclerAdapter(mteam,getContext());
         recyclerTeam.setLayoutManager(layoutManager);
         recyclerTeam.setAdapter(adapter);
     }

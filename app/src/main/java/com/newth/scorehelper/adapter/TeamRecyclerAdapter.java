@@ -1,5 +1,7 @@
 package com.newth.scorehelper.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import com.newth.scorehelper.R;
 import com.newth.scorehelper.bean.Inner.User;
 import com.newth.scorehelper.bean.TeamBeanDB;
+import com.newth.scorehelper.ui.activity.ScoreActivity;
 
 import java.util.List;
 
@@ -17,23 +20,26 @@ import java.util.List;
  */
 
 public class TeamRecyclerAdapter extends RecyclerView.Adapter<TeamRecyclerAdapter.MyViewHolder>  {
-    private TeamBeanDB teamBeanDB;
     private List<String> teamMembName;
     private List<Long> teamMembStuID;
-    public TeamRecyclerAdapter(TeamBeanDB teamBeanDB){
-        this.teamBeanDB=teamBeanDB;
+    private Context context;
+    public TeamRecyclerAdapter(TeamBeanDB teamBeanDB, Context context){
         teamMembName=teamBeanDB.getTeamMembName();
         teamMembStuID=teamBeanDB.getTeamMembStuID();
+        this.context=context;
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_team,parent,false);
-        MyViewHolder viewHolder=new MyViewHolder(view);
+        final MyViewHolder viewHolder=new MyViewHolder(view);
         if (User.getInstance().isLeader()){
             viewHolder.clickView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent=new Intent(context, ScoreActivity.class);
+                    intent.putExtra("id",teamMembStuID.get(viewHolder.getAdapterPosition()));
+                    intent.putExtra("name",teamMembName.get(viewHolder.getAdapterPosition()));
+                    context.startActivity(intent);
                 }
             });
         }

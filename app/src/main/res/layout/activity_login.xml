@@ -28,7 +28,6 @@
                 android:gravity="center"
                 android:paddingTop="16dp"
                 app:hintEnabled="false">
-
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_username"
                     android:layout_width="match_parent"

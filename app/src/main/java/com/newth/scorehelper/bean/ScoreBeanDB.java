@@ -9,10 +9,10 @@ import cn.bmob.v3.BmobObject;
 public class ScoreBeanDB extends BmobObject {
     private String userName;
     private Long userStuID;
-    private Integer answerScore;
-    private Integer noteScore;
-    private Integer codeScore;
-    private Integer week;
+    private String answerScore;
+    private String noteScore;
+    private String codeScore;
+    private String week;
 
     public String getUserName() {
         return userName;
@@ -30,35 +30,35 @@ public class ScoreBeanDB extends BmobObject {
         this.userStuID = userStuID;
     }
 
-    public Integer getAnswerScore() {
+    public String getAnswerScore() {
         return answerScore;
     }
 
-    public void setAnswerScore(Integer answerScore) {
+    public void setAnswerScore(String answerScore) {
         this.answerScore = answerScore;
     }
 
-    public Integer getNoteScore() {
+    public String getNoteScore() {
         return noteScore;
     }
 
-    public void setNoteScore(Integer noteScore) {
+    public void setNoteScore(String noteScore) {
         this.noteScore = noteScore;
     }
 
-    public Integer getCodeScore() {
+    public String getCodeScore() {
         return codeScore;
     }
 
-    public void setCodeScore(Integer codeScore) {
+    public void setCodeScore(String codeScore) {
         this.codeScore = codeScore;
     }
 
-    public Integer getWeek() {
+    public String getWeek() {
         return week;
     }
 
-    public void setWeek(Integer week) {
+    public void setWeek(String week) {
         this.week = week;
     }
 }
