@@ -12,8 +12,8 @@ public class UserBeanDB extends BmobObject {
     private String userName;
     private Long userStuID;
     private String userPassword;
-    private boolean isLeader;
-    private boolean isTeacher;
+    private Boolean isLeader;
+    private Boolean isTeacher;
     private String joinTeamID;
 
 
@@ -49,7 +49,7 @@ public class UserBeanDB extends BmobObject {
         this.userPassword = userPassword;
     }
 
-    public boolean isLeader() {
+    public Boolean isLeader() {
         return isLeader;
     }
 
@@ -57,7 +57,7 @@ public class UserBeanDB extends BmobObject {
         isLeader = leader;
     }
 
-    public boolean isTeacher() {
+    public Boolean isTeacher() {
         return isTeacher;
     }
 

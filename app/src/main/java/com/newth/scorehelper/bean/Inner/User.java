@@ -91,4 +91,9 @@ public class User {
     public void setObjID(String objID) {
         this.objID = objID;
     }
+
+    @Override
+    public String toString() {
+        return "login name:"+userName+" stuID: "+userStuID+" isleader:"+isLeader;
+    }
 }

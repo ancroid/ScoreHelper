@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -79,7 +80,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     break;
             }
             changeRegistBtuStatus(0);
-            changLogintBtuStatus(0);
+            changeLogintBtuStatus(0);
         }
     };
 
@@ -89,6 +90,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         initView();
+        getSharedPre();
     }
 
     private void initView() {
@@ -105,7 +107,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 queryUserIsExit();
                 break;
             case R.id.btu_login:
-                changLogintBtuStatus(1);
+                changeLogintBtuStatus(1);
                 login();
                 break;
             case R.id.tv_not_enter:
@@ -137,6 +139,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     msg.what = 1;
                     handler.sendMessage(msg);
                 } else {
+                    changeRegistBtuStatus(0);
+                    Toast.makeText(LoginActivity.this, "注册失败", LENGTH_SHORT).show();
                     Log.d("bmob1", "失败：" + e.getMessage() + "," + e.getErrorCode());
                 }
             }
@@ -161,6 +165,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         }
                     } else {
                         Log.d("bmob2", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                        Toast.makeText(LoginActivity.this, "查询失败", LENGTH_SHORT).show();
+                        changeLogintBtuStatus(0);
+                        changeRegistBtuStatus(0);
                     }
                 }
             });
@@ -186,7 +193,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 user.setJoinTeamID(list.get(0).getJoinTeamID());
                                 user.setLeader(list.get(0).isLeader());
                                 user.setTeacher(list.get(0).isTeacher());
-                                Log.d("mm", "done login: " + list.get(0).getObjectId());
+                                Log.d("mm", "done login: " + user.toString());
                             } else {
                                 msg.what = 5;
                             }
@@ -195,6 +202,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         }
                         handler.sendMessage(msg);
                     } else {
+                        changeLogintBtuStatus(0);
+                        Toast.makeText(LoginActivity.this, "登录失败", LENGTH_SHORT).show();
                         Log.d("bmob3", "失败：" + e.getMessage() + "," + e.getErrorCode());
                     }
                 }
@@ -213,6 +222,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void startMainAt() {
+        setSharedPre();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -223,7 +233,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             return false;
         } else {
             changeRegistBtuStatus(0);
-            changLogintBtuStatus(0);
+            changeLogintBtuStatus(0);
             return true;
         }
     }
@@ -255,7 +265,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         return content;
     }
 
-    private void changLogintBtuStatus(int status) {
+    private void changeLogintBtuStatus(int status) {
         if (status == 1) {
             btuLogin.setText("登录中....");
         } else {
@@ -265,9 +275,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void changeRegistBtuStatus(int status) {
         if (status == 1) {
-            btuLogin.setText("注册中....");
+            btuRegister.setText("注册中....");
         } else {
-            btuLogin.setText("注    册");
+            btuRegister.setText("注    册");
         }
+    }
+
+    private void getSharedPre(){
+        SharedPreferences preferences=getSharedPreferences("data",MODE_PRIVATE);
+        if (preferences.getBoolean("isFirst",true)){
+
+        }else {
+            editUsername.setText(preferences.getString("name",""));
+            editStuid.setText(String.valueOf(preferences.getLong("stuId",0)));
+            editPassword.setText(preferences.getString("passwd",""));
+        }
+    }
+    private void setSharedPre(){
+        SharedPreferences.Editor editor=getSharedPreferences("data",MODE_PRIVATE).edit();
+        editor.putString("name",user.getUserName());
+        editor.putLong("stuId",user.getUserStuID());
+        editor.putString("passwd",user.getUserPassword());
+        editor.putBoolean("isFirst",false);
+        editor.apply();
     }
 }

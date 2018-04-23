@@ -59,10 +59,10 @@ public class ScoreActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         ButterKnife.bind(this);
-        initView();
         Intent intent=getIntent();
         stuId=intent.getLongExtra("id",0);
         studName=intent.getStringExtra("name");
+        initView();
     }
     private void initView(){
         inittoolbar();
@@ -78,7 +78,7 @@ public class ScoreActivity extends BaseActivity {
     private void inittoolbar() {
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
-        toolbarTitle.setText("个人详细评分");
+        toolbarTitle.setText(studName+"同学详细评分");
         if (actionBar != null) {
             actionBar.setTitle("");
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -107,7 +107,7 @@ public class ScoreActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("noteScore", "onItemSelected: "+position);
-                noteScore=SpinerListUtil.getWeekList().get(position);
+                noteScore=SpinerListUtil.getScoreList().get(position);
             }
 
             @Override
@@ -118,7 +118,7 @@ public class ScoreActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("sampleScore", "onItemSelected: "+position);
-                sampleScore=SpinerListUtil.getWeekList().get(position);
+                sampleScore=SpinerListUtil.getScoreList().get(position);
             }
 
             @Override
@@ -129,7 +129,7 @@ public class ScoreActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("questionScore", "onItemSelected: "+position);
-                questionScore=SpinerListUtil.getWeekList().get(position);
+                questionScore=SpinerListUtil.getScoreList().get(position);
             }
 
             @Override
@@ -153,7 +153,7 @@ public class ScoreActivity extends BaseActivity {
     }
     private void checkScoreIsExit(){
         BmobQuery<ScoreBeanDB> query=new BmobQuery<>();
-        query.addWhereEqualTo("userName",studName);
+        query.addWhereEqualTo("week",week);
         query.addWhereEqualTo("userStuID",stuId);
         query.findObjects(new FindListener<ScoreBeanDB>() {
             @Override
@@ -176,9 +176,9 @@ public class ScoreActivity extends BaseActivity {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-                    Toast.makeText(ScoreActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScoreActivity.this,"更新成功",Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(ScoreActivity.this,"上传失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScoreActivity.this,"更新失败",Toast.LENGTH_SHORT).show();
                 }
             }
         });

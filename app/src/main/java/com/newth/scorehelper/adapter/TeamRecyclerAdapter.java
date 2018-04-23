@@ -48,7 +48,7 @@ public class TeamRecyclerAdapter extends RecyclerView.Adapter<TeamRecyclerAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.textNum.setText(position+1);
+        holder.textNum.setText(""+position+1);
         holder.textId.setText(String.valueOf(teamMembStuID.get(position)));
         holder.textName.setText(teamMembName.get(position));
     }

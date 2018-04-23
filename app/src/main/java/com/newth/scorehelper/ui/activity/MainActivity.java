@@ -1,6 +1,7 @@
 package com.newth.scorehelper.ui.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -154,10 +155,31 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.join_team) {
-            createJoinDialog();
+            if (checkIsteamNull()) {
+                createJoinDialog();
+            } else {
+                Toast.makeText(MainActivity.this, "已加入团队", Toast.LENGTH_SHORT).show();
+            }
         }
         if (item.getItemId() == R.id.create_team) {
-            createFoundDialog();
+            if (checkIsteamNull()) {
+                createFoundDialog();
+            } else {
+                Toast.makeText(MainActivity.this, "已加入团队", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (item.getItemId() == R.id.team_invite_num) {
+            if (checkIsteamNull()) {
+                Toast.makeText(MainActivity.this, "未加入团队", Toast.LENGTH_SHORT).show();
+            } else {
+                showAlertDialog("邀请码", user.getJoinTeamID(), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }, "确定", null, "");
+
+            }
         }
         return true;
     }
@@ -202,13 +224,13 @@ public class MainActivity extends BaseActivity {
         dialog = DialogPlus.newDialog(this)
                 .setContentHolder(holder)
                 .setGravity(Gravity.TOP)
-                .setCancelable(true)
+                .setCancelable(false)
                 .setPadding(100, 10, 100, 0)
                 .setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(DialogPlus dialog, View view) {
                         switch (view.getId()) {
-                            case R.id.button_dialog_join:
+                            case R.id.button_dialog_found:
                                 if (checkInfo()) {
                                     foundTeam(dialogInput);
                                 }
@@ -308,28 +330,28 @@ public class MainActivity extends BaseActivity {
     }
 
     private boolean checkInfo() {
-        if (checkIsteamNull()) {
-            View view = holder.getInflatedView();
-            EditText editText = view.findViewById(R.id.text_input);
-            if ("".equals(editText.getText().toString()) || editText.getText() == null) {
-                Toast.makeText(this, "输入为空", Toast.LENGTH_SHORT).show();
-            } else {
-                dialogInput = editText.getText().toString();
-                return true;
-            }
+        View view = holder.getInflatedView();
+        EditText editText = view.findViewById(R.id.text_input);
+        if ("".equals(editText.getText().toString()) || editText.getText() == null) {
+            Toast.makeText(this, "输入为空", Toast.LENGTH_SHORT).show();
+        } else {
+            dialogInput = editText.getText().toString();
+            return true;
         }
+
         return false;
     }
 
-    private void updateUserInfo(String teamid, boolean isleader) {
+    private void updateUserInfo(String teamid, Boolean isleader) {
         UserBeanDB userBeanDB = new UserBeanDB();
         userBeanDB.setObjectId(user.getObjID());
-        userBeanDB.addUnique("joinTeamID", teamid);
-        userBeanDB.addUnique("isLeader", isleader);
+        userBeanDB.setJoinTeamID(teamid);
+        userBeanDB.setLeader(isleader);
         userBeanDB.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
+                    dialog.dismiss();
                     changeFragment(0);
                 } else {
                     Log.d("bmob", "数据更新失败：" + e.getMessage() + "," + e.getErrorCode());

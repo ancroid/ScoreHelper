@@ -13,4 +13,9 @@
         android:title="加入团队"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/team_invite_num"
+        android:title="查看团队邀请码"
+        app:showAsAction="never"
+        />
 </menu>

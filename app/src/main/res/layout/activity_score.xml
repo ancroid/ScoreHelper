@@ -18,16 +18,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:padding="8dp"
             android:text="课时" />
 
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="7"
             android:id="@+id/spin_week"
+            android:gravity="center"
             android:padding="8dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,16 +48,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:padding="8dp"
             android:text="笔记情况" />
 
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="7"
+            android:gravity="center"
             android:padding="8dp"
             android:id="@+id/spin_note"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="分"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,16 +79,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:padding="8dp"
             android:text="完成案例训练情况" />
 
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="7"
+            android:gravity="center"
             android:padding="8dp"
             android:id="@+id/spin_sample"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="分"/>
     </LinearLayout>
 
     <LinearLayout
@@ -91,15 +111,21 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="8dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="回答问题情况" />
 
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="7"
             android:padding="8dp"
             android:id="@+id/spin_question"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="分"/>
     </LinearLayout>
 
     <TextView
