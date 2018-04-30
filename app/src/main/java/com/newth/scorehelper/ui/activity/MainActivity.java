@@ -181,6 +181,9 @@ public class MainActivity extends BaseActivity {
 
             }
         }
+        if (item.getItemId()==R.id.score_update){
+            changeFragment(currentPosition);
+        }
         return true;
     }
 

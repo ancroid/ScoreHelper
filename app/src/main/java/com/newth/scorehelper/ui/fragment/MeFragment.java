@@ -1,6 +1,5 @@
 package com.newth.scorehelper.ui.fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -41,10 +41,9 @@ public class MeFragment extends Fragment {
     @BindView(R.id.text_no_score_info)
     TextView textNoScoreInfo;
     Unbinder unbinder;
-    @BindView(R.id.swipe_refresh)
-    SwipeRefreshLayout swipeRefresh;
 
     private User user = User.getUser();
+
 
     public static MeFragment newInstance() {
         Bundle arguments = new Bundle();
@@ -66,7 +65,6 @@ public class MeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initScore();
-        initView();
     }
 
     private void initScore() {
@@ -75,6 +73,10 @@ public class MeFragment extends Fragment {
         } else {
             getScore();
         }
+    }
+
+    private void setNoScore() {
+        textNoScoreInfo.setVisibility(View.VISIBLE);
     }
 
     private void getScore() {
@@ -99,28 +101,6 @@ public class MeFragment extends Fragment {
         });
     }
 
-    private void initView(){
-        swipeRefresh.setDistanceToTriggerSync(300);
-        swipeRefresh.setColorSchemeResources(R.color.primary_color,R.color.colorAccent);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getScore();
-            }
-        });
-    }
-    private void initRecycler(List<MyScore> list) {
-        textNoScoreInfo.setVisibility(View.GONE);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        MyScoreRecyclerAdapter adapter = new MyScoreRecyclerAdapter(list);
-        recyclerScore.setLayoutManager(layoutManager);
-        recyclerScore.setAdapter(adapter);
-        if (swipeRefresh.isRefreshing()){
-            Toast.makeText(getContext(),"刷新成功",Toast.LENGTH_SHORT).show();
-            swipeRefresh.setRefreshing(false);
-        }
-    }
-
     private void handleScore(List<ScoreBeanDB> list) {
         int temp = 0;
         List<MyScore> slist = new ArrayList<>();
@@ -139,8 +119,12 @@ public class MeFragment extends Fragment {
         initRecycler(slist);
     }
 
-    private void setNoScore() {
-        textNoScoreInfo.setVisibility(View.VISIBLE);
+    private void initRecycler(List<MyScore> list) {
+        textNoScoreInfo.setVisibility(View.GONE);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        MyScoreRecyclerAdapter adapter = new MyScoreRecyclerAdapter(list,getContext());
+        recyclerScore.setLayoutManager(layoutManager);
+        recyclerScore.setAdapter(adapter);
     }
 
     @Override

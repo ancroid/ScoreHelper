@@ -18,4 +18,9 @@
         android:title="查看团队邀请码"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/score_update"
+        android:title="刷新"
+        app:showAsAction="never"
+        />
 </menu>
