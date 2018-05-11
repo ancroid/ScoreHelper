@@ -11,9 +11,9 @@ import cn.bmob.v3.BmobObject;
 public class TeamBeanDB extends BmobObject {
 
     private String teamName;
-    private Long teamLeaderStuID;
+    private String teamLeaderStuID;
     private List<String> teamMembName;
-    private List<Long> teamMembStuID;
+    private List<String> teamMembStuID;
     private Integer teamScore;
     private transient String inviteNum;
 
@@ -25,11 +25,11 @@ public class TeamBeanDB extends BmobObject {
         this.teamName = teamName;
     }
 
-    public Long getTeamLeaderStuID() {
+    public String getTeamLeaderStuID() {
         return teamLeaderStuID;
     }
 
-    public void setTeamLeaderStuID(Long teamLeaderStuID) {
+    public void setTeamLeaderStuID(String teamLeaderStuID) {
         this.teamLeaderStuID = teamLeaderStuID;
     }
 
@@ -41,11 +41,11 @@ public class TeamBeanDB extends BmobObject {
         this.teamMembName = teamMembName;
     }
 
-    public List<Long> getTeamMembStuID() {
+    public List<String> getTeamMembStuID() {
         return teamMembStuID;
     }
 
-    public void setTeamMembStuID(List<Long> teamMembStuID) {
+    public void setTeamMembStuID(List<String> teamMembStuID) {
         this.teamMembStuID = teamMembStuID;
     }
 

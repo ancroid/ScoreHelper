@@ -136,6 +136,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     user.setUserPassword(getPassword());
                     user.setLeader(false);
                     user.setTeacher(false);
+                    user.setJoinTeamID("");
                     Message msg = new Message();
                     msg.what = 1;
                     handler.sendMessage(msg);
@@ -146,7 +147,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 }
             }
         });
-
     }
 
     private void queryUserIsExit() {
@@ -248,13 +248,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         return content;
     }
 
-    private Long getStuID() {
+    private String getStuID() {
         String content = editStuid.getText().toString().trim();
         if (content.isEmpty()) {
             Toast.makeText(this, "学号不能为空", LENGTH_SHORT).show();
             return null;
         }
-        return Long.valueOf(content);
+        return content;
     }
 
     private String getPassword() {
@@ -288,15 +288,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         }else {
             editUsername.setText(preferences.getString("name",""));
-            editStuid.setText(String.valueOf(preferences.getLong("stuId",0)));
+            editStuid.setText(preferences.getString("stuId",""));
             editPassword.setText(preferences.getString("passwd",""));
         }
     }
     private void setSharedPre(){
         SharedPreferences.Editor editor=getSharedPreferences("data",MODE_PRIVATE).edit();
-        editor.putString("name",user.getUserName());
-        editor.putLong("stuId",user.getUserStuID());
-        editor.putString("passwd",user.getUserPassword());
+        editor.putString("name",getUserName());
+        editor.putString("stuId",getStuID());
+        editor.putString("passwd",getPassword());
         editor.putBoolean("isFirst",false);
         editor.apply();
     }

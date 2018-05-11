@@ -10,7 +10,7 @@ import cn.bmob.v3.BmobObject;
 
 public class UserBeanDB extends BmobObject {
     private String userName;
-    private Long userStuID;
+    private String userStuID;
     private String userPassword;
     private Boolean isLeader;
     private Boolean isTeacher;
@@ -33,11 +33,11 @@ public class UserBeanDB extends BmobObject {
         this.userName = userName;
     }
 
-    public Long getUserStuID() {
+    public String getUserStuID() {
         return userStuID;
     }
 
-    public void setUserStuID(Long userStuID) {
+    public void setUserStuID(String userStuID) {
         this.userStuID = userStuID;
     }
 

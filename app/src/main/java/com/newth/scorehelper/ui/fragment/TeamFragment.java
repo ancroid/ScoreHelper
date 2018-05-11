@@ -55,6 +55,7 @@ public class TeamFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initTeam();
+        Log.d("teamteam", "onResume: ");
     }
 
     private void initTeam() {

@@ -125,6 +125,12 @@ public class MainActivity extends BaseActivity {
         }
         transaction.commitAllowingStateLoss();
     }
+    private void replaceFragment(int position){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        currentPosition = position;
+        transaction.replace(R.id.frame_main,makeFragment(position),makeTag(position));
+        transaction.commitAllowingStateLoss();
+    }
 
     private String makeTag(int position) {
         return R.id.frame_main + position + "";
@@ -181,8 +187,8 @@ public class MainActivity extends BaseActivity {
 
             }
         }
-        if (item.getItemId()==R.id.score_update){
-            changeFragment(currentPosition);
+        if (item.getItemId() == R.id.score_update) {
+            replaceFragment(currentPosition);
         }
         return true;
     }
@@ -275,8 +281,8 @@ public class MainActivity extends BaseActivity {
     private void joinTeam(final String objID) {
         TeamBeanDB teamBeanDB = new TeamBeanDB();
         teamBeanDB.setObjectId(objID);
-        teamBeanDB.addUnique("teamMembStuID", user.getUserStuID());
-        teamBeanDB.addUnique("teamMembName", user.getUserName());
+        teamBeanDB.add("teamMembStuID", user.getUserStuID());
+        teamBeanDB.add("teamMembName", user.getUserName());
         teamBeanDB.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
@@ -298,7 +304,7 @@ public class MainActivity extends BaseActivity {
         List<String> name = new ArrayList<>();
         name.add(user.getUserName());
         teamBeanDB.setTeamMembName(name);
-        List<Long> id = new ArrayList<>();
+        List<String> id = new ArrayList<>();
         id.add(user.getUserStuID());
         teamBeanDB.setTeamMembStuID(id);
         teamBeanDB.save(new SaveListener<String>() {
@@ -355,7 +361,7 @@ public class MainActivity extends BaseActivity {
             public void done(BmobException e) {
                 if (e == null) {
                     dialog.dismiss();
-                    changeFragment(0);
+                    replaceFragment(0);
                 } else {
                     Log.d("bmob", "数据更新失败：" + e.getMessage() + "," + e.getErrorCode());
                     Toast.makeText(MainActivity.this, "更新失败", Toast.LENGTH_SHORT).show();

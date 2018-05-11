@@ -41,7 +41,7 @@
         android:id="@+id/text_no_score_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:text="你还未有平时成绩"
         android:textColor="@color/editText_hint"
         android:visibility="gone" />

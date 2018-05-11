@@ -21,10 +21,11 @@ public class User {
         return user;
     }
     private String userName;
-    private Long userStuID;
+    private String userStuID;
     private String userPassword;
     private String objID;
     private String joinTeamID;
+    private String joinTeamName;
     private boolean isLeader;
     private boolean isTeacher;
 
@@ -68,11 +69,11 @@ public class User {
         this.userName = userName;
     }
 
-    public Long getUserStuID() {
+    public String getUserStuID() {
         return userStuID;
     }
 
-    public void setUserStuID(Long userStuID) {
+    public void setUserStuID(String userStuID) {
         this.userStuID = userStuID;
     }
 

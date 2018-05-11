@@ -50,7 +50,7 @@ public class ScoreActivity extends BaseActivity {
     private String noteScore="1";
     private String sampleScore="1";
     private String questionScore="1";
-    private Long stuId;
+    private String stuId;
     private String studName="";
 
 
@@ -60,7 +60,7 @@ public class ScoreActivity extends BaseActivity {
         setContentView(R.layout.activity_score);
         ButterKnife.bind(this);
         Intent intent=getIntent();
-        stuId=intent.getLongExtra("id",0);
+        stuId=intent.getStringExtra("id");
         studName=intent.getStringExtra("name");
         initView();
     }
@@ -147,7 +147,7 @@ public class ScoreActivity extends BaseActivity {
     }
 
     private void submitScore(){
-        if (stuId!=0){
+        if (stuId!=null&&!stuId.equals("")){
             checkScoreIsExit();
         }
     }

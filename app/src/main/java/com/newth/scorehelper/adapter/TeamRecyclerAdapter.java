@@ -21,7 +21,7 @@ import java.util.List;
 
 public class TeamRecyclerAdapter extends RecyclerView.Adapter<TeamRecyclerAdapter.MyViewHolder>  {
     private List<String> teamMembName;
-    private List<Long> teamMembStuID;
+    private List<String> teamMembStuID;
     private Context context;
     public TeamRecyclerAdapter(TeamBeanDB teamBeanDB, Context context){
         teamMembName=teamBeanDB.getTeamMembName();
@@ -48,8 +48,9 @@ public class TeamRecyclerAdapter extends RecyclerView.Adapter<TeamRecyclerAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.textNum.setText(""+position+1);
-        holder.textId.setText(String.valueOf(teamMembStuID.get(position)));
+
+        holder.textNum.setText(""+(position+1));
+        holder.textId.setText(teamMembStuID.get(position));
         holder.textName.setText(teamMembName.get(position));
     }
 
