@@ -25,7 +25,7 @@
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
+            android:layout_weight="8"
             android:id="@+id/spin_week"
             android:gravity="center"
             android:padding="8dp" />
@@ -33,7 +33,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +57,7 @@
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
+            android:layout_weight="4"
             android:gravity="center"
             android:padding="8dp"
             android:id="@+id/spin_note"/>
@@ -64,7 +66,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
-            android:text="分"/>
+            android:text="分 x"/>
+        <org.angmarch.views.NiceSpinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:padding="8dp"
+            android:id="@+id/spin_note_percent"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:text="%"/>
     </LinearLayout>
 
     <LinearLayout
@@ -81,12 +98,12 @@
             android:gravity="center"
             android:layout_weight="2"
             android:padding="8dp"
-            android:text="完成案例训练情况" />
+            android:text="完成案例情况" />
 
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
+            android:layout_weight="4"
             android:gravity="center"
             android:padding="8dp"
             android:id="@+id/spin_sample"/>
@@ -95,7 +112,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
-            android:text="分"/>
+            android:text="分 x"/>
+
+        <org.angmarch.views.NiceSpinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:padding="8dp"
+            android:id="@+id/spin_sample_percent"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:text="%"/>
     </LinearLayout>
 
     <LinearLayout
@@ -117,7 +150,7 @@
         <org.angmarch.views.NiceSpinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
+            android:layout_weight="4"
             android:padding="8dp"
             android:id="@+id/spin_question"/>
         <TextView
@@ -125,7 +158,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
-            android:text="分"/>
+            android:text="分 x"/>
+        <org.angmarch.views.NiceSpinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:padding="8dp"
+            android:id="@+id/spin_question_percent"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:text="%"/>
     </LinearLayout>
 
     <TextView
