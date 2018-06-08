@@ -214,9 +214,9 @@ public class ScoreActivity extends BaseActivity {
     }
 
     private void getScore(){
-        questionScore=""+Integer.valueOf(questionScore)*Integer.valueOf(questionPercent)/100;
-        sampleScore=""+Integer.valueOf(sampleScore)*Integer.valueOf(samplePercent)/100;
-        noteScore=""+Integer.valueOf(noteScore)*Integer.valueOf(notePercent)/100;
+        questionScore=""+(Integer.valueOf(questionScore)*Integer.valueOf(questionPercent)/100);
+        sampleScore=""+(Integer.valueOf(sampleScore)*Integer.valueOf(samplePercent)/100);
+        noteScore=""+(Integer.valueOf(noteScore)*Integer.valueOf(notePercent)/100);
         Log.d("mmm", "getScore: "+noteScore+" "+sampleScore+" "+questionScore);
     }
     private void update(String objectid) {
